@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTC-8">
+        <title>Paper Scissor Rock</title>
+    </head>
+    <body>
+        <script>
+            let playerChoice = prompt("Rock, Paper, Scissors?");
+
+            function getComputerChoice(){
+                let random_choice = Math.floor(Math.random() * 3)
+                let attack_choice = ['paper','scissors','rock'];
+                return attack_choice[random_choice]
+            }
+            
+            function playGame(playerSelection,computerSelection){
+    
+                if (playerSelection === 'paper' && computerSelection === 'rock') {
+                    return ("Player Won!"); 
+                }
+                else if (playerSelection === 'rock' && computerSelection === 'scissors'){
+                    return ("Player Won!");
+                }
+                else if (playerSelection === 'scissors' && computerSelection === 'paper'){
+                    return ("Player Won!");
+                }
+                else if (playerSelection === 'rock' && computerSelection === 'paper'){
+                    return ("Player Lost!");
+                }
+                else if (playerSelection === 'scissors' && computerSelection === 'rock'){
+                    return ("Player Lost!");
+                }
+                else if (playerSelection === 'paper' && computerSelection === 'scissors'){
+                    return ("Player Lost!");
+                }
+                else if (playerSelection === computerSelection){
+                    return ("TIE");
+                }
+             } 
+
+            function game(){
+                let computer_counter = 0;
+                let player_counter = 0;
+                    for (let i = 0; i <= 5; i++){
+                        playGame(playerChoice,getComputerChoice());
+                        if (playGame(playerChoice,getComputerChoice()) =="Player Lost!"){
+                            console.log("You Lost!");
+                        }
+                        else if (playGame(playerChoice,getComputerChoice()) =="Player Won!"){
+                            console.log("You Win!");
+                    }
+                        else if (playGame(playerChoice,getComputerChoice()) == "TIE"){
+                            console.log("You Tied!")
+                        }
+    
+              
+                if (player_counter > computer_counter){
+                    alert("Player Wins!");
+                }
+                else if (computer_counter > player_counter){
+                    alert("Computer Wins!")
+                }             
+             }
+            }
+            game()
+        </script>
+    </body>
+</html>
