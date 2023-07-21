@@ -1,0 +1,40 @@
+html,
+body{
+   margin:0;
+   height: 100%;
+   width: 100%;
+   background-color: blanchedalmond;
+}
+
+.container{
+    display:flex;
+    padding-top: 10vh;
+    flex:1;
+    justify-content: space-around;
+    align-items: center;
+}
+
+button{
+    border-color: yellow;
+    background-color: aquamarine;
+    font-size: large;
+    font-weight: 900;
+    height:100px;
+    width:240px
+    
+
+}
+
+.winner,
+.loser {
+   display: flex;
+   padding: 200px;
+   flex:1;
+   font-size: large;
+   font-weight: 900;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   color: red;
+}
+
