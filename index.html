@@ -3,10 +3,26 @@
     <head>
         <meta charset="UTC-8">
         <title>Paper Scissor Rock</title>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
+        <div class="container">
+        <button class="rock" href="#">rock</button>
+        <button class="paper" href="#">papers</button>
+        <button class="scissors" href="#">scissors</button></div> 
         <script>
-            let playerChoice = prompt("Rock, Paper, Scissors?");
+            
+            const buttons = document.querySelectorAll('button');
+        
+
+            buttons.forEach((button)=> {
+                button.addEventListener('click',() =>{
+                    let playerChoice = button.className;
+                    let computerChoice = getComputerChoice();
+                    playGame(playerChoice,computerChoice);
+                })
+            })
+
 
             function getComputerChoice(){
                 let random_choice = Math.floor(Math.random() * 3)
@@ -14,56 +30,73 @@
                 return attack_choice[random_choice]
             }
             
+            function win(){
+                    const win = document.createElement('div');
+                    const winText = document.createTextNode("You win!");
+                    win.classList.add('winner');
+                    win.appendChild(winText);
+                    document.body.appendChild(win);
+            
+            }
+
+            function lose(){
+                    const lose = document.createElement('div');
+                    const loseText = document.createTextNode("You Lose!");
+                    lose.classList.add('loser');
+                    lose.appendChild(loseText);
+                    document.body.appendChild(lose);
+            
+            }
+
+        
+            let playerPointTracker = 0;
+            let computerPointTracker = 0;
+
+            function checkWinner (){
+                if (playerPointTracker == 5){
+                    win();
+                    playerPointTracker = 0;
+                    computerPointTracker = 0;
+                }
+                else if (computerPointTracker == 5){
+                    lose();
+                    playerPointTracker = 0;
+                    computerPointTracker = 0;
+                }
+            }
+            
+
             function playGame(playerSelection,computerSelection){
     
+                 
                 if (playerSelection === 'paper' && computerSelection === 'rock') {
-                    return ("Player Won!"); 
+                    playerPointTracker += 1
                 }
                 else if (playerSelection === 'rock' && computerSelection === 'scissors'){
-                    return ("Player Won!");
+                    playerPointTracker += 1;
                 }
                 else if (playerSelection === 'scissors' && computerSelection === 'paper'){
-                    return ("Player Won!");
+                    playerPointTracker += 1;
                 }
                 else if (playerSelection === 'rock' && computerSelection === 'paper'){
-                    return ("Player Lost!");
+                    computerPointTracker += 1;
                 }
                 else if (playerSelection === 'scissors' && computerSelection === 'rock'){
-                    return ("Player Lost!");
+                    computerPointTracker += 1;
                 }
                 else if (playerSelection === 'paper' && computerSelection === 'scissors'){
-                    return ("Player Lost!");
+                    computerPointTracker += 1;
                 }
                 else if (playerSelection === computerSelection){
-                    return ("TIE");
+            
                 }
+                
+        
+                console.log(playerPointTracker,computerPointTracker)
+                checkWinner(playerPointTracker,computerPointTracker);
              } 
 
-            function game(){
-                let computer_counter = 0;
-                let player_counter = 0;
-                    for (let i = 0; i <= 5; i++){
-                        playGame(playerChoice,getComputerChoice());
-                        if (playGame(playerChoice,getComputerChoice()) =="Player Lost!"){
-                            console.log("You Lost!");
-                        }
-                        else if (playGame(playerChoice,getComputerChoice()) =="Player Won!"){
-                            console.log("You Win!");
-                    }
-                        else if (playGame(playerChoice,getComputerChoice()) == "TIE"){
-                            console.log("You Tied!")
-                        }
-    
-              
-                if (player_counter > computer_counter){
-                    alert("Player Wins!");
-                }
-                else if (computer_counter > player_counter){
-                    alert("Computer Wins!")
-                }             
-             }
-            }
-            game()
+
         </script>
     </body>
 </html>
